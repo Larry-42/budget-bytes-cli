@@ -1,0 +1,2 @@
+class BudgetBytesCli::Catgeory
+end
