@@ -7,8 +7,10 @@ class BudgetBytesCli::CLI
         while selection != 'Q'
             selection = get_input_categories
             if selection != 'Q'
-                sel_num = selection.to_i - 1
-                puts "You picked #{BudgetBytesCli::Category.all[sel_num].name}"
+                selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
+                puts "You picked #{selected_category.name}."
+                puts ""
+                
             end
         end
     end
