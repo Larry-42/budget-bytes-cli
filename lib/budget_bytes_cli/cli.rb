@@ -3,7 +3,7 @@ class BudgetBytesCli::CLI
         puts "Welcome to Budget Bytes CLI!"
         scraper = BudgetBytesCli::CatgeoryScraper.new
         scraper.create_categories
-        display_items
+        selection = get_input
     end
     
     def display_items
@@ -13,5 +13,22 @@ class BudgetBytesCli::CLI
             puts "#{idx + 1}.  #{menu_item}"
         end
         puts "Or enter 'Q' to exit"
+    end
+    
+    def get_input
+        input = ""
+        valid_input = false
+        menu_length = BudgetBytesCli::Catgeory.all.length
+        while !valid_input
+            display_items
+            input = gets.strip.upcase
+            if input == 'Q'
+                valid_input = true
+            elsif input.to_i.to_s == input && input.to_i >= 0 && input.to_i <= menu_length
+                valid_input = true
+            else
+                puts "Invalid input, please try again."
+            end
+        end
     end
 end
