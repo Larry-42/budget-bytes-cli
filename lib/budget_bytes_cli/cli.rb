@@ -1,0 +1,3 @@
+class BudgetBytesCli::CLI
+
+end

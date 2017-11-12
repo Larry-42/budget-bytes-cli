@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/budget_bytes_cli'
+
+BudgetBytesCli::CLI.new.call
