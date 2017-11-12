@@ -8,11 +8,18 @@ class BudgetBytesCli::CLI
             selection = get_input_categories
             if selection != 'Q'
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                puts "You picked #{selected_category.name}."
-                puts ""
-                
+                display_num_recipes(selected_category)
             end
         end
+    end
+    
+    def display_num_recipes(category_chosen)
+        unless category_chosen.recipes
+            category_chosen.get_recipes
+        end
+        
+        puts "You picked #{category_chosen.name}."        
+        puts "There are #{category_chosen.recipes.length} recipes in this category."
     end
     
     def display_items
@@ -32,7 +39,7 @@ class BudgetBytesCli::CLI
             display_items
             input = gets.strip.upcase
             if input == 'Q'
-                valid_input = true        #get_recipes_from(self.url)ue
+                valid_input = true        
             elsif input.to_i.to_s == input && input.to_i >= 0 && input.to_i <= menu_length
                 valid_input = true
             else
