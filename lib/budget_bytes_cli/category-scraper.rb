@@ -12,6 +12,7 @@ class BudgetBytesCli::CatgeoryScraper
         locate_categories.each do |item|
             url = item.css("a").attribute("href").value
             title = item.css("a").children[0].text
+            BudgetBytesCli::Catgeory.new(url, title)
         end
     end
 end
