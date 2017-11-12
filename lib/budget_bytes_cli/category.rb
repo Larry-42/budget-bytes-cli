@@ -1,6 +1,7 @@
 class BudgetBytesCli::Catgeory
     attr_reader :url, :name
     
+    @recipes = []
     @@all = []
     
     def self.all
