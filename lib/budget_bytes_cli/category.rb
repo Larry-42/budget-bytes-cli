@@ -24,7 +24,10 @@ class BudgetBytesCli::Category
             pages_total = page_nums.map{|p| p.text.to_i}.max
         end
         
-        get_recipes_from(self.url)
+        (1..pages_total).each do |p|
+            get_recipes_from(create_page_url(p))
+        end
+        #get_recipes_from(self.url)
     end
     
     def get_recipes_from(page_url)
