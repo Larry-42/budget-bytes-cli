@@ -3,7 +3,10 @@ class BudgetBytesCli::CLI
         puts "Welcome to Budget Bytes CLI!"
         scraper = BudgetBytesCli::CatgeoryScraper.new
         scraper.create_categories
-        selection = get_input
+        selection = ""
+        while selection != 'Q'
+            selection = get_input
+        end
     end
     
     def display_items
@@ -30,5 +33,6 @@ class BudgetBytesCli::CLI
                 puts "Invalid input, please try again."
             end
         end
+        input
     end
 end
