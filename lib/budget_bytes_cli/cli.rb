@@ -18,8 +18,10 @@ class BudgetBytesCli::CLI
             category_chosen.get_recipes
         end
         
+        num_recipes = category_chosen.recipes.length
+        
         puts "You picked #{category_chosen.name}."        
-        puts "There are #{category_chosen.recipes.length} recipes in this category."
+        puts "There are #{num_recipes} recipes in this category."
     end
     
     def display_items
