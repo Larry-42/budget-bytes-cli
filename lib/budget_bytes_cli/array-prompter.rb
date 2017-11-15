@@ -1,5 +1,12 @@
+#ArrayPrompter uses an ArraySelector for blocks of 20 (if needed) and
+#an ArraySelector for the block of 20 chosen, returns the overall selection
 class BudgetBytesCli::ArrayPrompter
     attr_accessor :prompt_text, :array_to_select
+    
+    def initialize
+        @block_selector = BudgetBytesCli::ArraySelector.new
+        @item_selector = BudgetBytesCli::ArraySelector.new
+    end
     
     def last_item
         self.array_to_select.length
@@ -33,4 +40,8 @@ class BudgetBytesCli::ArrayPrompter
         end
         input
     end
+end
+
+#ArraySelector selects from an array (helper class for ArrayPrompter)
+class BudgetBytesCli::ArraySelector
 end
