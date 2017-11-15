@@ -8,6 +8,20 @@ class BudgetBytesCli::ArrayPrompter
         @item_selector = BudgetBytesCli::ArraySelector.new
     end
     
+    def get_input
+        #TODO:  GET BLOCK INPUT!
+        
+        #Gets input using item_selector ArraySelector
+        #TODO:  Change so that you select from the sub-block above.
+        @item_selector.prompt_text = self.prompt_text
+        @item_selector.array_to_select = self.array_to_select
+        @item_selector.get_input
+    end
+end
+
+#ArraySelector selects from an array (helper class for ArrayPrompter)
+class BudgetBytesCli::ArraySelector
+    attr_accessor :prompt_text, :array_to_select
     def last_item
         self.array_to_select.length
     end
@@ -40,8 +54,4 @@ class BudgetBytesCli::ArrayPrompter
         end
         input
     end
-end
-
-#ArraySelector selects from an array (helper class for ArrayPrompter)
-class BudgetBytesCli::ArraySelector
 end
