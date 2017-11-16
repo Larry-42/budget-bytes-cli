@@ -9,7 +9,24 @@ class BudgetBytesCli::ArrayPrompter
     end
     
     def get_input
-        #TODO:  GET BLOCK INPUT!
+        num_blocks = (self.array_to_select.length.to_f / 20.to_f).ceil
+        
+        #makes sure variable is outside if statement scope
+        input_selected = nil
+        
+        #only go through block iteration if there are > 1 block!
+        if num_blocks > 1
+            @block_selector.prompt_text = self.prompt_text + "\nPlease select a range below"
+            
+            #create array for block selector
+            @block_selector.array_to_select = []
+            (1..num_blocks).each do |n|
+                @block_selector.array_to_select << "#{(n - 1) * 20 + 1}-#{[(n * 20), self.array_to_select.length].min}"
+            end
+            
+            input_selected = @block_selector.get_input
+        end
+        
         
         #Gets input using item_selector ArraySelector
         #TODO:  Change so that you select from the sub-block above.
