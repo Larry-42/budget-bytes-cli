@@ -5,7 +5,7 @@ class BudgetBytesCli::ArrayPrompter
     
     def initialize
         @block_selector = BudgetBytesCli::ArraySelector.new
-        @item_selector = BudgetBytesCli::ArraySelector.new
+        @item_selector = BudgetBytesCli::ArraySelector.new(true)
     end
     
     def get_input
@@ -35,8 +35,11 @@ class BudgetBytesCli::ArrayPrompter
             block_max = [(selected_value * 20) - 1, self.array_to_select.length].min
             @item_selector.array_to_select = self.array_to_select[block_min..block_max]
             second_selection = @item_selector.get_input
-            if second_selection != 'Q'
+            if second_selection == second_selection.to_i.to_s
                 input_selected = (second_selection.to_i + (selected_value - 1) * 20).to_s
+            elsif second_selection == 'B'
+                #call function recursively to go back to prior input
+                input_selected = self.get_input
             end
         end
         input_selected
@@ -46,6 +49,15 @@ end
 #ArraySelector selects from an array (helper class for ArrayPrompter)
 class BudgetBytesCli::ArraySelector
     attr_accessor :prompt_text, :array_to_select
+    
+    def initialize(back_allowed = false)
+        @back_allowed = back_allowed
+        @allowed_chars = ['Q']
+        if @back_allowed
+            @allowed_chars << 'B'
+        end
+    end
+    
     def last_item
         self.array_to_select.length
     end
@@ -59,6 +71,10 @@ class BudgetBytesCli::ArraySelector
         self.array_to_select.each_with_index do |menu_item, idx|
             puts "#{idx + 1}.  #{menu_item}"
         end
+        if @back_allowed
+            puts "Or enter 'B' to go back to the previous menu"
+        end
+        
         puts "Or enter 'Q' to quit"
     end
     
@@ -68,7 +84,7 @@ class BudgetBytesCli::ArraySelector
         while !valid_input
             self.prompt
             input = gets.strip.upcase
-            if input == 'Q'
+            if @allowed_chars.include?(input)
                 valid_input = true        
             elsif input.to_i.to_s == input && input.to_i >= 1 && input.to_i <= self.last_item
                 valid_input = true
