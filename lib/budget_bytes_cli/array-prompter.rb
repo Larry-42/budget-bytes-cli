@@ -63,7 +63,7 @@ class BudgetBytesCli::ArraySelector
             input = gets.strip.upcase
             if input == 'Q'
                 valid_input = true        
-            elsif input.to_i.to_s == input && input.to_i >= 0 && input.to_i <= self.last_item
+            elsif input.to_i.to_s == input && input.to_i >= 1 && input.to_i <= self.last_item
                 valid_input = true
             else
                 puts "Invalid input, please try again."
