@@ -12,7 +12,7 @@ class BudgetBytesCli::ArrayPrompter
         num_blocks = (self.array_to_select.length.to_f / 20.to_f).ceil
         
         #makes sure variable is outside if statement scope
-        input_selected = nil
+        input_selected = 1
         
         #only go through block iteration if there are > 1 block!
         if num_blocks > 1
@@ -27,12 +27,19 @@ class BudgetBytesCli::ArrayPrompter
             input_selected = @block_selector.get_input
         end
         
-        
-        #Gets input using item_selector ArraySelector
-        #TODO:  Change so that you select from the sub-block above.
-        @item_selector.prompt_text = self.prompt_text
-        @item_selector.array_to_select = self.array_to_select
-        @item_selector.get_input
+        if input_selected != 'Q'
+            #Gets input using item_selector ArraySelector
+            selected_value = input_selected.to_i
+            @item_selector.prompt_text = self.prompt_text + "\nPlease select an item below."
+            block_min = 1 + (selected_value - 1) * 20
+            block_max = [selected_value * 20, self.array_to_select.length].min
+            @item_selector.array_to_select = self.array_to_select[block_min..block_max]
+            second_selection = @item_selector.get_input
+            if second_selection != 'Q'
+                input_selected = (second_selection.to_i + (selected_value - 1) * 20).to_s
+            end
+        end
+        input_selected
     end
 end
 
@@ -48,7 +55,7 @@ class BudgetBytesCli::ArraySelector
             self.prompt_text = text_prompt
         end
         
-        puts text_prompt
+        puts self.prompt_text
         self.array_to_select.each_with_index do |menu_item, idx|
             puts "#{idx + 1}.  #{menu_item}"
         end

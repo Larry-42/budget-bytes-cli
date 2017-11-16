@@ -5,7 +5,7 @@ class BudgetBytesCli::CLI
         scraper.create_categories
         category_selector = BudgetBytesCli::ArrayPrompter.new
         category_selector.array_to_select = BudgetBytesCli::Category.all.map {|i| i.name}
-        category_selector.prompt_text = "Please select a recipe category from the list below:"
+        category_selector.prompt_text = "Selecting recipe category."
         selection = ""
         while selection != 'Q'
             selection = category_selector.get_input
