@@ -1,4 +1,5 @@
 class BudgetBytesCli::CLI
+    
     def call
         puts "Welcome to Budget Bytes CLI!"
         scraper = BudgetBytesCli::CategoryScraper.new
@@ -6,13 +7,11 @@ class BudgetBytesCli::CLI
         category_selector = BudgetBytesCli::ArrayPrompter.new
         category_selector.array_to_select = BudgetBytesCli::Category.all.map {|i| i.name}
         category_selector.prompt_text = "Selecting recipe category."
-        selection = ""
+        selection = category_selector.get_input
         while selection != 'Q'
+            selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
+            display_num_recipes(selected_category)
             selection = category_selector.get_input
-            if selection != 'Q'
-                selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                display_num_recipes(selected_category)
-            end
         end
     end
     
