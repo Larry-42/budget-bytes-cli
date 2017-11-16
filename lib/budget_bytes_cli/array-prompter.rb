@@ -35,11 +35,13 @@ class BudgetBytesCli::ArrayPrompter
             block_max = [(selected_value * 20) - 1, self.array_to_select.length].min
             @item_selector.array_to_select = self.array_to_select[block_min..block_max]
             second_selection = @item_selector.get_input
-            if second_selection == second_selection.to_i.to_s
-                input_selected = (second_selection.to_i + (selected_value - 1) * 20).to_s
+            if second_selection == 'Q'
+                input_selected = second_selection
             elsif second_selection == 'B'
                 #call function recursively to go back to prior input
                 input_selected = self.get_input
+            else
+                input_selected = (second_selection.to_i + (selected_value - 1) * 20).to_s
             end
         end
         input_selected
