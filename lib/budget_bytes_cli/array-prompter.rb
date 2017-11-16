@@ -31,8 +31,8 @@ class BudgetBytesCli::ArrayPrompter
             #Gets input using item_selector ArraySelector
             selected_value = input_selected.to_i
             @item_selector.prompt_text = self.prompt_text + "\nPlease select an item below."
-            block_min = 1 + (selected_value - 1) * 20
-            block_max = [selected_value * 20, self.array_to_select.length].min
+            block_min = (selected_value - 1) * 20
+            block_max = [(selected_value * 20) - 1, self.array_to_select.length].min
             @item_selector.array_to_select = self.array_to_select[block_min..block_max]
             second_selection = @item_selector.get_input
             if second_selection != 'Q'
