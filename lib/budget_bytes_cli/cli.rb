@@ -16,7 +16,6 @@ class BudgetBytesCli::CLI
         while selection != 'Q'
             if current_selector == category_selector
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                #display_num_recipes(selected_category)
                 
                 current_selector = recipe_selector
                 unless selected_category.recipes
@@ -27,21 +26,15 @@ class BudgetBytesCli::CLI
                 recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
                 selection = recipe_selector.get_input
             else
-                #TODO:  Add code to receive input for recipe selector
+                selected_recipe = selected_category.recipes[selection.to_i - 1]
+                self.display_recipe(selected_recipe)
                 current_selector = category_selector
                 selection = category_selector.get_input
             end
         end
     end
     
-    def display_num_recipes(category_chosen)
-        unless category_chosen.recipes
-            category_chosen.get_recipes
-        end
-        
-        num_recipes = category_chosen.recipes.length
-        
-        puts "You picked #{category_chosen.name}."        
-        puts "There are #{num_recipes} recipes in this category."
+    def display_recipe(recipe_chosen)
+        puts recipe_chosen.name
     end
 end

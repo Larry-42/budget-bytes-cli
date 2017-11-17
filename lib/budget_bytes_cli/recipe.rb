@@ -5,4 +5,5 @@ class BudgetBytesCli::Recipe
         @name = name
         @url = url
     end
+    
 end
