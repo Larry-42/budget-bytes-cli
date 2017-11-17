@@ -24,13 +24,12 @@ class BudgetBytesCli::CLI
                 recipe_selector.prompt_text = "Selected category #{selected_category.name}.\nPlease select a recipe."
                 
                 recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
-                selection = recipe_selector.get_input
             else
                 selected_recipe = selected_category.recipes[selection.to_i - 1]
                 self.display_recipe(selected_recipe)
                 current_selector = category_selector
-                selection = category_selector.get_input
             end
+            selection = current_selector.get_input
         end
     end
     
