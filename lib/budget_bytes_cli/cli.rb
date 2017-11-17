@@ -35,9 +35,6 @@ class BudgetBytesCli::CLI
     
     def display_recipe(recipe_chosen)
         puts recipe_chosen.name
-        unless recipe_chosen.ingredients
-            recipe_chosen.scrape_recipe
-        end
         puts "\nIngredients\n"
         puts recipe_chosen.ingredients
         puts ""
