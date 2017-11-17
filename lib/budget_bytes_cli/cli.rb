@@ -39,7 +39,10 @@ class BudgetBytesCli::CLI
         unless recipe_chosen.ingredients
             recipe_chosen.scrape_recipe
         end
-        puts "Ingredients\n"
+        puts "\nIngredients\n"
         puts recipe_chosen.ingredients
+        puts ""
+        puts recipe_chosen.instructions
+        puts ""
     end
 end

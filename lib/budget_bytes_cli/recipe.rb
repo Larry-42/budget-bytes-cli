@@ -1,5 +1,5 @@
 class BudgetBytesCli::Recipe
-    attr_reader :url, :name, :ingredients
+    attr_reader :url, :name, :ingredients, :instructions
     
     def initialize(url = nil, name = nil)
         @name = name
@@ -18,6 +18,7 @@ class BudgetBytesCli::Recipe
         end
 
         @ingredients = ingredient_array.join("\n")
+        @instructions = page.css(".wprm-recipe-instruction-text").map {|i| i.text}.join("\n")
     end
     
 end
