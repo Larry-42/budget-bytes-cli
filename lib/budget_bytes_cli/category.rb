@@ -1,5 +1,5 @@
 class BudgetBytesCli::Category
-    attr_reader :url, :name, :recipes
+    attr_reader :url, :name
     
     @@all = []
     
@@ -11,6 +11,11 @@ class BudgetBytesCli::Category
         @name = name
         @url = url
         @@all << self
+    end
+    
+    def recipes
+        self.get_recipes unless @recipes
+        @recipes
     end
     
     def get_recipes
