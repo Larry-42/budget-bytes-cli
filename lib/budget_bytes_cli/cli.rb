@@ -16,7 +16,19 @@ class BudgetBytesCli::CLI
         while selection != 'Q'
             if current_selector == category_selector
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                display_num_recipes(selected_category)
+                #display_num_recipes(selected_category)
+                
+                current_selector = recipe_selector
+                unless selected_category.recipes
+                    selected_category.get_recipes
+                end
+                recipe_selector.prompt_text = "Selected category #{selected_category.name}.\nPlease select a recipe."
+                
+                recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
+                selection = recipe_selector.get_input
+            else
+                #TODO:  Add code to receive input for recipe selector
+                current_selector = category_selector
                 selection = category_selector.get_input
             end
         end
