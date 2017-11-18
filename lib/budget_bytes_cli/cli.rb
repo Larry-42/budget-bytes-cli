@@ -38,15 +38,18 @@ class BudgetBytesCli::CLI
         page_width = IO.console.winsize[1]
         puts reformat_wrapped(recipe_chosen.instructions, page_width || 80)
         puts ""
-        puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
+        if yes_no_input("Do you want to open this recipe in your browser?") == 'Y'
+            Launchy.open(recipe_chosen.url)
+        end
+    end
+    
+    def yes_no_input (prompt)
+        puts prompt + " Please answer 'y' or 'n'"
         input = gets.strip.upcase
         while !['Y', 'N'].include?(input)
             puts "Invalid input."
-            puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
+            puts prompt + " Please answer 'y' or 'n'" 
             input = gets.strip.upcase
-        end
-        if input == 'Y'
-            Launchy.open(recipe_chosen.url)
         end
     end
     
