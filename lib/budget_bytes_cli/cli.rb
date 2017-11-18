@@ -37,6 +37,16 @@ class BudgetBytesCli::CLI
         puts ""
         puts reformat_wrapped(recipe_chosen.instructions, ENV['COLUMNS'].to_i || 80)
         puts ""
+        binding.pry
+        puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
+        while !['Y', 'N'].include?(input)
+            puts "Invalid input."
+            puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
+            input = gets.strip.upcase
+        end
+        if input == 'Y'
+            Launchy.open(recipe_chosen.url)
+        end
     end
     
     #from https://www.safaribooksonline.com/library/view/ruby-cookbook/0596523696/ch01s15.html
