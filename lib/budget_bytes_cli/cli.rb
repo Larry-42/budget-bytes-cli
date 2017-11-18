@@ -39,6 +39,7 @@ class BudgetBytesCli::CLI
         puts ""
         binding.pry
         puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
+        input = gets.strip.upcase
         while !['Y', 'N'].include?(input)
             puts "Invalid input."
             puts "Do you want to open this recipe in your browser?  Please answer 'y' or 'n'"
@@ -50,7 +51,7 @@ class BudgetBytesCli::CLI
     end
     
     #from https://www.safaribooksonline.com/library/view/ruby-cookbook/0596523696/ch01s15.html
-    def reformat_wrapped(s, width=78)
+	def reformat_wrapped(s, width=78)
 	  lines = []
 	  line = ""
 	  s.split(/\s+/).each do |word|
