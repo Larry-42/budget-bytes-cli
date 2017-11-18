@@ -18,7 +18,7 @@ class BudgetBytesCli::CLI
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
                 
                 current_selector = recipe_selector
-                recipe_selector.prompt_text = "Selected category #{selected_category.name}.\nPlease select a recipe."
+                recipe_selector.prompt_text = "Selecting recipe"
                 
                 recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
             else
