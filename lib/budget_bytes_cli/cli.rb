@@ -35,7 +35,25 @@ class BudgetBytesCli::CLI
         puts "\nIngredients\n"
         puts recipe_chosen.ingredients
         puts ""
-        puts recipe_chosen.instructions
+        puts reformat_wrapped(recipe_chosen.instructions)
         puts ""
     end
+    
+    #from https://www.safaribooksonline.com/library/view/ruby-cookbook/0596523696/ch01s15.html
+    def reformat_wrapped(s, width=78)
+	  lines = []
+	  line = ""
+	  s.split(/\s+/).each do |word|
+	    if line.size + word.size >= width
+	      lines << line
+	      line = word
+	    elsif line.empty?
+	     line = word
+	    else
+	     line << " " << word
+	   end
+	   end
+	   lines << line if line
+	  return lines.join "\n"
+	end
 end
