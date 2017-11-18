@@ -83,6 +83,13 @@ class BudgetBytesCli::ArraySelector
     def get_input
         input = ""
         valid_input = false
+        
+        #for corner case where only one item in array
+        if array_to_select.length == 1
+            input = "1"
+            valid_input = true
+        end
+        
         while !valid_input
             self.prompt
             input = gets.strip.upcase
