@@ -3,9 +3,10 @@
 class BudgetBytesCli::ArrayPrompter
     attr_accessor :prompt_text, :array_to_select
     
-    def initialize
+    def initialize(prompt_text = "")
         @block_selector = BudgetBytesCli::ArraySelector.new
         @item_selector = BudgetBytesCli::ArraySelector.new(true)
+        @prompt_text = prompt_text
     end
     
     def get_input
