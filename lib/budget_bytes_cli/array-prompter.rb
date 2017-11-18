@@ -21,7 +21,14 @@ class BudgetBytesCli::ArrayPrompter
             #create array for block selector
             @block_selector.array_to_select = []
             (1..num_blocks).each do |n|
-                @block_selector.array_to_select << "#{(n - 1) * 20 + 1}-#{[(n * 20), self.array_to_select.length].min}"
+                to_add = nil
+                if ((n-1) * 20 + 1) == self.array_to_select.length
+                    to_add = "#{(n-1) * 20 + 1}"
+                else
+                    to_add = "#{(n - 1) * 20 + 1}-#{[(n * 20), self.array_to_select.length].min}"
+                end
+                
+                @block_selector.array_to_select << to_add
             end
             
             input_selected = @block_selector.get_input
