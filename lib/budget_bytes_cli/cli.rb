@@ -35,7 +35,7 @@ class BudgetBytesCli::CLI
         puts "\nIngredients\n"
         puts recipe_chosen.ingredients
         puts ""
-        puts reformat_wrapped(recipe_chosen.instructions)
+        puts reformat_wrapped(recipe_chosen.instructions, ENV['COLUMNS'].to_i || 80)
         puts ""
     end
     
