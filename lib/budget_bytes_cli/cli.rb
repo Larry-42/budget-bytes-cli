@@ -16,20 +16,52 @@ class BudgetBytesCli::CLI
         
         #define variables outside of while loop scope
         selected_category = nil
-        filtered_recipes = []
+        filtered_categories = []
+        recipe_array = []
         
         while selection != 'Q'
             if current_selector == category_selector
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
                 whether_to_combine = yes_no_input("Combine with another category?  In other words, display only recipes in both the current category and another you select?")
                 if whether_to_combine == 'Y'
-                    #TODO:  ADD CODE TO COMBINE RECIPES, SET SELECTOR TO cat_combination_selector
+                    current_selector = cat_combination_selector
+                    filtered_categories = BudgetBytesCli::Category.all.select do |c|
+                        c != selected_category
+                    end
+                    cat_combination_selector.array_to_select = filtered_categories.map {|i| i.name}
                 else
                     current_selector = recipe_selector
+                    recipe_array = selected_category.recipes
                     recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
                 end
+            elsif current_selector == cat_combination_selector
+                combination_category = filtered_categories[selection.to_i - 1]
+                recipe_array = selected_category.combine_recipes(combination_category)
+                if recipe_array.empty?
+                    valid_input_empty_array = false
+                    while !valid_input_empty_array
+                        puts "No recipes are in the two categories to combine."
+                        puts "Enter 'B' to select a different category to combine,"
+                        puts "'C' to start fresh with a different recipe category,"
+                        puts "or 'I' to ignore the recipe combination and use the category you chose."
+                        empty_array_input = gets.strip.upcase
+                        if empty_array_input == 'B'
+                            current_selector = cat_combination_selector
+                            #not necessary, but makes explicit that we're running this again
+                        elsif empty_array_input == 'C'
+                            current_selector = category_selector
+                        elsif empty_array_input == 'I'
+                            current_selector = recipe_selector
+                            recipe_array = selected_category.recipes
+                            recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
+                        end
+                    end
+                else
+                    current_selector = recipe_selector
+                    recipe_selector.array_to_select = recipe_array.map {|i| i.name}
+                end
             else
-                selected_recipe = selected_category.recipes[selection.to_i - 1]
+                selected_recipe = recipe_array[selection.to_i - 1]
                 self.display_recipe(selected_recipe)
                 current_selector = category_selector
             end
