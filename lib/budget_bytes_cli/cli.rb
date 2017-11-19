@@ -48,9 +48,12 @@ class BudgetBytesCli::CLI
                         if empty_array_input == 'B'
                             current_selector = cat_combination_selector
                             #not necessary, but makes explicit that we're running this again
+                            valid_input_empty_array = true
                         elsif empty_array_input == 'C'
+                            valid_input_empty_array = true
                             current_selector = category_selector
                         elsif empty_array_input == 'I'
+                            valid_input_empty_array = true
                             current_selector = recipe_selector
                             recipe_array = selected_category.recipes
                             recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
