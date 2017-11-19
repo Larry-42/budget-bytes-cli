@@ -51,4 +51,13 @@ class BudgetBytesCli::Category
             self.url + "page/" + num.to_s + "/"
         end
     end
+    
+    def combine_recipes(cat_to_combine)
+        recipes_combined = cat_to_combine.recipes
+        recipe_urls = self.recipes.map {|r| r.url}
+        filtered_recipes = recipes_combined.select do |r|
+            recipe_urls.include?(r.url)
+        end
+        filtered_recipes
+    end
 end

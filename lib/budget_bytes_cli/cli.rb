@@ -9,14 +9,25 @@ class BudgetBytesCli::CLI
         
         recipe_selector = BudgetBytesCli::ArrayPrompter.new("Selecting recipe")
         
+        cat_combination_selector = BudgetBytesCli::ArrayPrompter.new("Selecting category to combine.")
+        
         current_selector = category_selector
         selection = category_selector.get_input
+        
+        #define variables outside of while loop scope
+        selected_category = nil
+        filtered_recipes = []
         
         while selection != 'Q'
             if current_selector == category_selector
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                current_selector = recipe_selector
-                recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
+                whether_to_combine = yes_no_input("Combine with another category?  In other words, display only recipes in both the current category and another you select?")
+                if whether_to_combine == 'Y'
+                    #TODO:  ADD CODE TO COMBINE RECIPES, SET SELECTOR TO cat_combination_selector
+                else
+                    current_selector = recipe_selector
+                    recipe_selector.array_to_select = selected_category.recipes.map {|i| i.name}
+                end
             else
                 selected_recipe = selected_category.recipes[selection.to_i - 1]
                 self.display_recipe(selected_recipe)
