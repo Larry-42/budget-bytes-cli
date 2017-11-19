@@ -47,6 +47,7 @@ class BudgetBytesCli::CLI
             puts prompt + " Please answer 'y' or 'n'" 
             input = gets.strip.upcase
         end
+        input
     end
     
     #from https://www.safaribooksonline.com/library/view/ruby-cookbook/0596523696/ch01s15.html
