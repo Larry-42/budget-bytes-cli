@@ -22,7 +22,7 @@ class BudgetBytesCli::CLI
         while selection != 'Q'
             if current_selector == category_selector
                 selected_category = BudgetBytesCli::Category.all[selection.to_i - 1]
-                whether_to_combine = yes_no_input("Combine with another category?  In other words, display only recipes in both the current category and another you select?")
+                whether_to_combine = yes_no_input("Combine with another category?\nIn other words, display only recipes in both the current category and another you select?\n")
                 if whether_to_combine == 'Y'
                     current_selector = cat_combination_selector
                     filtered_categories = BudgetBytesCli::Category.all.select do |c|
