@@ -29,7 +29,12 @@ class BudgetBytesCli::ArrayPrompter
                 
             @block_selector.array_to_select << to_add
         end
-            
+        
+        #fixes issue with back being displayed in item selector when only one block
+        if @block_selector.array_to_select.length == 1
+            @item_selector.back_allowed = false
+        end
+        
         input_selected = @block_selector.get_input
         
         if input_selected != 'Q'
@@ -56,6 +61,15 @@ end
 #ArraySelector selects from an array (helper class for ArrayPrompter)
 class BudgetBytesCli::ArraySelector
     attr_accessor :prompt_text, :array_to_select
+    
+    def back_allowed= (value)
+        @back_allowed = value
+        if value
+            @allowed_chars = ['Q', 'B']
+        else
+            @allowed_chars = ['Q']
+        end
+    end
     
     def initialize(back_allowed = false)
         @back_allowed = back_allowed
