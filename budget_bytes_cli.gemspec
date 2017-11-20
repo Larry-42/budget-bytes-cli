@@ -6,12 +6,12 @@ require "budget_bytes_cli/version"
 Gem::Specification.new do |spec|
   spec.name          = "budget_bytes_cli"
   spec.version       = BudgetBytesCli::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["<github email address>"]
+  spec.authors       = ["Larry Weinstein"]
+  spec.email         = ["lawrence.e.weinstein@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{A CLI interface for Budget Bytes, a recipe blog.}
+  spec.description   = %q{Currently in Beta, please report bugs to the author.}
+  spec.homepage      = "https://github.com/Larry-42/budget-bytes-cli"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
