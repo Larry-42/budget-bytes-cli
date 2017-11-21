@@ -4,23 +4,15 @@ This is a CLI interface for [Budget Bytes](https://www.budgetbytes.com), a recip
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Run the following command in the terminal to install from rubygems.org:
 
-```ruby
-gem 'budget_bytes_cli'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install budget_bytes_cli
+    $ gem install budget-bytes-cli
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the following command in the terminal, and follow the on-screen prompts:
+    
+    $budget-bytes-cli
 
 ## Development
 
