@@ -1,7 +1,6 @@
 # coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "budget_bytes_cli/version"
+
+require_relative "./lib/budget_bytes_cli/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "budget-bytes-cli"
@@ -14,12 +13,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/Larry-42/budget-bytes-cli"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
+  spec.files = ["lib/budget_bytes_cli.rb", "lib/budget_bytes_cli/cli.rb", "lib/budget_bytes_cli/category-scraper.rb", "lib/budget_bytes_cli/category.rb", "lib/budget_bytes_cli/recipe.rb", "lib/budget_bytes_cli/array-prompter.rb", "config/environment.rb"]
 
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
   spec.executables << "budget-bytes-cli"
 
   spec.add_development_dependency "bundler", "~> 1.15"
