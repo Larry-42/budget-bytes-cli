@@ -1,8 +1,6 @@
 # BudgetBytesCli
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/budget_bytes_cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a CLI interface for [Budget Bytes](https://www.budgetbytes.com), a recipe blog.  This CLI enables the user to select a category of recipes, select a recipe from within the category, and to launch the recipe's page in the default web browser.  It also allows the user to "combine categories", in other words to see a list of recipes which appear in two categories and to select a recipe from this list to display.
 
 ## Installation
 
@@ -40,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the BudgetBytesCli project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/<github username>/budget_bytes_cli/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the BudgetBytesCli project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/Larry-42/budget-bytes-cli/CODE_OF_CONDUCT.md).
