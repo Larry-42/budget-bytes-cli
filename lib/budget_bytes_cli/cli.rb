@@ -73,15 +73,19 @@ class BudgetBytesCli::CLI
     end
     
     def display_recipe(recipe_chosen)
-        puts recipe_chosen.name
-        puts "\nIngredients\n"
-        puts recipe_chosen.ingredients
-        puts ""
-        page_width = IO.console.winsize[1]
-        puts reformat_wrapped(recipe_chosen.instructions, page_width || 80)
-        puts ""
-        if yes_no_input("Do you want to open this recipe in your browser?") == 'Y'
-            Launchy.open(recipe_chosen.url)
+        if recipe_chosen.ingredients == "" || recipe_chosen.instructions == ""
+            puts "Error!  Could not scrape recipe from page selected!"
+        else
+            puts recipe_chosen.name
+            puts "\nIngredients\n"
+            puts recipe_chosen.ingredients
+            puts ""
+            page_width = IO.console.winsize[1]
+            puts reformat_wrapped(recipe_chosen.instructions, page_width || 80)
+            puts ""
+            if yes_no_input("Do you want to open this recipe in your browser?") == 'Y'
+                Launchy.open(recipe_chosen.url)
+            end
         end
     end
     
