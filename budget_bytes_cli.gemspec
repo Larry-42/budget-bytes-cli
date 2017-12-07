@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/Larry-42/budget-bytes-cli"
   spec.license       = "MIT"
 
-  spec.files = ["lib/budget_bytes_cli.rb", "lib/budget_bytes_cli/cli.rb", "lib/budget_bytes_cli/category-scraper.rb", "lib/budget_bytes_cli/category.rb", "lib/budget_bytes_cli/recipe.rb", "lib/budget_bytes_cli/array-prompter.rb", "config/environment.rb"]
+  spec.files = ["lib/budget_bytes_cli.rb", "lib/budget_bytes_cli/cli.rb", "lib/budget_bytes_cli/scraper.rb", "lib/budget_bytes_cli/category.rb", "lib/budget_bytes_cli/recipe.rb", "lib/budget_bytes_cli/array-prompter.rb", "config/environment.rb"]
 
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.executables << "budget-bytes-cli"
