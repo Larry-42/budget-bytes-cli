@@ -1,4 +1,4 @@
-class BudgetBytesCli::CategoryScraper
+class BudgetBytesCli::Scraper
     
     #functions for getting categories
     def self.open_page

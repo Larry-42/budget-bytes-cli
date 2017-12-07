@@ -8,14 +8,14 @@ class BudgetBytesCli::Recipe
     
     def ingredients
         unless @ingredients
-            @ingredients, @instructions = BudgetBytesCli::CategoryScraper.scrape_recipe(@url)
+            @ingredients, @instructions = BudgetBytesCli::Scraper.scrape_recipe(@url)
         end
         @ingredients
     end
     
     def instructions
         unless @instructions
-            @ingredients, @instructions = BudgetBytesCli::CategoryScraper.scrape_recipe(@url) 
+            @ingredients, @instructions = BudgetBytesCli::Scraper.scrape_recipe(@url) 
         end
         @instructions
     end

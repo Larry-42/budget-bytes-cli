@@ -14,7 +14,7 @@ class BudgetBytesCli::Category
     end
     
     def recipes
-        @recipes = BudgetBytesCli::CategoryScraper.get_recipes(self.url) unless @recipes
+        @recipes = BudgetBytesCli::Scraper.get_recipes(self.url) unless @recipes
         
         @recipes
     end

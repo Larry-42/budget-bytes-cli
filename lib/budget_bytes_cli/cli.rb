@@ -2,7 +2,7 @@ class BudgetBytesCli::CLI
     
     def call
         puts "Welcome to Budget Bytes CLI!"
-        BudgetBytesCli::CategoryScraper.create_categories
+        BudgetBytesCli::Scraper.create_categories
         category_selector = BudgetBytesCli::ArrayPrompter.new("Selecting recipe category.")
         category_selector.array_to_select = BudgetBytesCli::Category.all.map {|i| i.name}
         
